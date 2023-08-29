@@ -11,29 +11,29 @@ import axios from "axios";
 import * as Clipboard from "expo-clipboard";
 import { API_KEY } from "@env";
 
-const Explain = () => {
+const Poem = () => {
   const { theme } = useContext(ThemeContext);
   const [topic, setTopic] = useState("");
-  const [explanation, setExplanation] = useState("");
+  const [poem, setPoem] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isExplanationCopied, setIsExplanationCopied] = useState(false);
+  const [isPoemCopied, setIsPoemCopied] = useState(false);
 
   const handleTopicChange = (newTopic) => setTopic(newTopic);
 
   const copyToClipboard = async () => {
-    setIsExplanationCopied(true);
-    await Clipboard.setStringAsync(explanation);
+    setIsPoemCopied(true);
+    await Clipboard.setStringAsync(poem);
   };
 
   const submitTopic = () => {
     setLoading(true);
-    setIsExplanationCopied(false);
+    setIsPoemCopied(false);
     axios
       .post(
         `https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=${API_KEY}`,
         {
           prompt: {
-            text: `Explain ${topic} as i am nine`,
+            text: `Write a poem about ${topic}`,
           },
           temperature: 0.7,
           top_k: 40,
@@ -44,11 +44,11 @@ const Explain = () => {
         }
       )
       .then((res) => {
-        setExplanation(res.data.candidates[0].output);
+        setPoem(res.data.candidates[0].output);
         setLoading(false);
       })
       .catch((error) => {
-        setExplanation(
+        setPoem(
           "An error occured while connecting to server. Check your internet connection and retry"
         );
         setLoading(false);
@@ -103,7 +103,7 @@ const Explain = () => {
             fontSize: theme.spacing[3.5],
           }}
         >
-          Explain It
+          Create Poem
         </Text>
       </Pressable>
       {loading ? (
@@ -121,9 +121,9 @@ const Explain = () => {
             selectable={true}
             selectionColor={theme.colors.primary.main}
           >
-            {explanation}
+            {poem}
           </Text>
-          {explanation && (
+          {poem && (
             <Pressable
               style={{
                 backgroundColor:
@@ -150,7 +150,7 @@ const Explain = () => {
                   fontSize: theme.spacing[3.5],
                 }}
               >
-                {isExplanationCopied ? "Explanation Copied" : "Copy Explanation to Clipboard"}
+                {isPoemCopied ? "Poem Copied" : "Copy Poem to Clipboard"}
               </Text>
             </Pressable>
           )}
@@ -160,10 +160,10 @@ const Explain = () => {
   );
 };
 
-export default Explain;
+export default Poem;
 
 export const screenData = {
-  title: "Explainer",
-  description: "Write the topic and Aide will explain it.",
-  screen: "Explain",
+  title: "Poem Writer",
+  description: "Didn't you know that Aide is a poet?",
+  screen: "Poem",
 };

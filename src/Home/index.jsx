@@ -4,9 +4,10 @@ import { ThemeContext } from "../Providers/Theme";
 import { useContext } from "react";
 import { screenData as EssayScreenData } from "../Essay";
 import { screenData as ExplainScreenData } from "../Explain";
+import { screenData as PoemScreenData } from "../Poem";
 import ChangeTheme from "./ChangeTheme";
 
-const ScreensData = [EssayScreenData, ExplainScreenData];
+const ScreensData = [EssayScreenData, ExplainScreenData, PoemScreenData];
 
 const Home = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);

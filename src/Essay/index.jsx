@@ -112,7 +112,7 @@ const Essay = () => {
         <>
           <Text
             style={{
-              color: theme.colors.primary.contrastText,
+              color: theme.colors.text.primary,
               textAlign: "center",
               fontSize: theme.spacing[4],
               width: "80%",

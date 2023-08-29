@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../Home";
 import Essay from "../Essay";
+import Poem from "../Poem";
 import { NavigationContainer } from "@react-navigation/native";
 import { useContext } from "react";
 import { ThemeContext } from "../Providers/Theme";
@@ -25,6 +26,7 @@ const MainNavigator = () => {
         />
         <Stack.Screen name="Essay" component={Essay} />
         <Stack.Screen name="Explain" component={Explain} />
+        <Stack.Screen name="Poem" component={Poem} />
       </Stack.Navigator>
     </NavigationContainer>
   );
