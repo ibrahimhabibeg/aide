@@ -11,29 +11,30 @@ import axios from "axios";
 import * as Clipboard from "expo-clipboard";
 import { API_KEY } from "@env";
 
-const Essay = () => {
+const Explain = () => {
   const { theme } = useContext(ThemeContext);
   const [topic, setTopic] = useState("");
-  const [essay, setEssay] = useState("");
+  const [explanation, setExplanation] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isEssayCopied, setIsEssayCopied] = useState(false);
+  const [isExplanationCopied, setIsExplanationCopied] = useState(false);
 
   const handleTopicChange = (newTopic) => setTopic(newTopic);
 
   const copyToClipboard = async () => {
-    setIsEssayCopied(true);
-    await Clipboard.setStringAsync(essay);
+    setIsExplanationCopied(true);
+    await Clipboard.setStringAsync(explanation);
   };
 
   const submitTopic = () => {
+    console.log(API_KEY);
     setLoading(true);
-    setIsEssayCopied(false);
+    setIsExplanationCopied(false);
     axios
       .post(
         `https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=${API_KEY}`,
         {
           prompt: {
-            text: `Write an essay about the following topic\ninput: ${topic}\noutput:`,
+            text: `Explain ${topic} as i am nine`,
           },
           temperature: 0.7,
           top_k: 40,
@@ -44,11 +45,12 @@ const Essay = () => {
         }
       )
       .then((res) => {
-        setEssay(res.data.candidates[0].output);
+        setExplanation(res.data.candidates[0].output);
         setLoading(false);
       })
       .catch((error) => {
-        setEssay(
+        console.log(error.request);
+        setExplanation(
           "An error occured while connecting to server. Check your internet connection and retry"
         );
         setLoading(false);
@@ -103,7 +105,7 @@ const Essay = () => {
             fontSize: theme.spacing[3.5],
           }}
         >
-          Generate Essay
+          Explain It
         </Text>
       </Pressable>
       {loading ? (
@@ -121,9 +123,9 @@ const Essay = () => {
             selectable={true}
             selectionColor={theme.colors.primary.main}
           >
-            {essay}
+            {explanation}
           </Text>
-          {essay && (
+          {explanation && (
             <Pressable
               style={{
                 backgroundColor:
@@ -150,7 +152,7 @@ const Essay = () => {
                   fontSize: theme.spacing[3.5],
                 }}
               >
-                {isEssayCopied ? "Essay Copied" : "Copy Essay to Clipboard"}
+                {isExplanationCopied ? "Explanation Copied" : "Copy Explanation to Clipboard"}
               </Text>
             </Pressable>
           )}
@@ -160,10 +162,10 @@ const Essay = () => {
   );
 };
 
-export default Essay;
+export default Explain;
 
 export const screenData = {
-  title: "Essay Writer",
-  description: "Ask for the topic and Aide will write it.",
-  screen: "Essay",
+  title: "Explainer",
+  description: "Write the topic and Aide will explain it.",
+  screen: "Explain",
 };

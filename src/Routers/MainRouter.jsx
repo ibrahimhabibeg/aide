@@ -4,6 +4,7 @@ import Essay from "../Essay";
 import { NavigationContainer } from "@react-navigation/native";
 import { useContext } from "react";
 import { ThemeContext } from "../Providers/Theme";
+import Explain from "../Explain";
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ const MainNavigator = () => {
           options={{ title: "Aide" }}
         />
         <Stack.Screen name="Essay" component={Essay} />
+        <Stack.Screen name="Explain" component={Explain} />
       </Stack.Navigator>
     </NavigationContainer>
   );
