@@ -46,6 +46,7 @@ const LightColors = {
     main: "#3f51b5",
     dark: "#2c387e",
     light: "#6573c3",
+    contrastText: "#ffffff",
   },
   secondary: {
     main: "#f50057",
@@ -64,6 +65,10 @@ const LightColors = {
     paper: "#f5f5f5",
   },
   divider: "rgba(0,0,0,0.12)",
+  disabled:{
+    background:"#9e9e9e",
+    text:"#e0e0e0"
+  }
 };
 
 const DarkColors = {
@@ -91,6 +96,10 @@ const DarkColors = {
     primary: "#ffffff",
   },
   divider: "rgba(255,255,255,0.12)",
+  disabled:{
+    background:"#424242",
+    text:"#ffffff"
+  }
 };
 
 const LightTheme = {

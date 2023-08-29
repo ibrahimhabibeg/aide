@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../Home";
+import Essay from "../Essay";
 import { NavigationContainer } from "@react-navigation/native";
 import { useContext } from "react";
 import { ThemeContext } from "../Providers/Theme";
@@ -16,7 +17,12 @@ const MainNavigator = () => {
           headerTintColor: theme.colors.text.secondary,
         }}
       >
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: "Aide" }}
+        />
+        <Stack.Screen name="Essay" component={Essay} />
       </Stack.Navigator>
     </NavigationContainer>
   );

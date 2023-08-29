@@ -2,19 +2,13 @@ import { ScrollView } from "react-native";
 import ScreenCard from "./ScreenCard";
 import { ThemeContext } from "../Providers/Theme";
 import { useContext } from "react";
+import { screenData as EssayScreenData } from "../Essay";
 
 const ScreensData = [
-  {
-    title: "Essay Writer",
-    description: "Just ask for the topic and we will wrire it.",
-  },
-  {
-    title: "Explainer",
-    description: "Explain the topic as if I am 5 years old.",
-  },
+  EssayScreenData,
 ];
 
-const Home = () => {
+const Home = ({navigation}) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -30,6 +24,8 @@ const Home = () => {
           key={index}
           title={screenData.title}
           description={screenData.description}
+          screen={screenData.screen}
+          navigation={navigation}
         />
       ))}
     </ScrollView>
