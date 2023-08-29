@@ -60,8 +60,8 @@ const LightColors = {
     hint: "rgba(0,0,0,0.37)",
   },
   background: {
-    default: "#fafafa",
-    paper: "#ffffff",
+    default: "#eeeeee",
+    paper: "#f5f5f5",
   },
   divider: "rgba(0,0,0,0.12)",
 };
@@ -81,8 +81,8 @@ const DarkColors = {
     contrastText: "#ffffff",
   },
   background: {
-    default: "#303030",
-    paper: "#424243",
+    default: "#212121",
+    paper: "#424242",
   },
   text: {
     secondary: "rgba(255,255,255,0.7)",
