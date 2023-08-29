@@ -3,12 +3,11 @@ import ScreenCard from "./ScreenCard";
 import { ThemeContext } from "../Providers/Theme";
 import { useContext } from "react";
 import { screenData as EssayScreenData } from "../Essay";
+import ChangeTheme from "./ChangeTheme";
 
-const ScreensData = [
-  EssayScreenData,
-];
+const ScreensData = [EssayScreenData];
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -28,6 +27,7 @@ const Home = ({navigation}) => {
           navigation={navigation}
         />
       ))}
+      <ChangeTheme />
     </ScrollView>
   );
 };
