@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "aide",
-    "slug": "aide",
+    "name": "Aide",
+    "slug": "Aide",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.ibrahimhabibeg.Aide"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aa7f3f2f-f6f6-4f5d-a0e8-ecb143ba6be1"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "androidStatusBar": {
+      "backgroundColor": "#424242",
+      "translucent": false
     }
   }
 }
