@@ -1,6 +1,6 @@
 <div align='center'>
 
-<img src=https://i.imgur.com/mPY0eWI.png alt="logo" width=1270 height=760 />
+<img src=https://i.imgur.com/mPY0eWI.png alt="logo" />
 
 <h1>Aide</h1>
 <p>Aide is an AI-powered application that helps high school students succeed in their studies. The app can help students with a variety of tasks, including writing essays, explaining topics, and analyzing words..</p>
