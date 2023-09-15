@@ -14,7 +14,6 @@
 
 - [About the Project](#⭐-about-the-project)
 - [Local Installation](#🧰-local-installation)
-- [Roadmap](#🧭-roadmap)
 - [FAQ](#❔-faq)
 - [Contact](#🤝-contact)
 - [Acknowledgements](#💎-acknowledgements)
@@ -24,6 +23,7 @@
 
 ### 🎯 Features
 
+- Email Generation
 - Essay Writing
 - Explanation
 - Poem Writing
@@ -86,19 +86,6 @@ npm run start
 ```
 
 
-
-## 🧭 Roadmap
-
-
-* [x] Essay Writing
-* [x] Topics Explanation
-* [x] Poem Wrtiting
-* [x] Word Analysis
-* [x] Light and Dark mode support
-* [ ] Email Writing
-* [ ] Career Counseling
-
-
 ## ❔ FAQ
 
 
@@ -118,6 +105,14 @@ Q. I can't find app on Play Store or App Store.
 
 A. Currently, the app isn't released to production since PaLM api is currently in public preview. During public preview, developers can use the PaLM API only for experimentation and prototyping. Production applications are not permitted.
 
+Q. Is the app production ready?
+
+A. No. Currently PaLM API is currently in public preview; therefore, it can't be used in production applications. 
+
+Since the app isn't built for production, I decided to store the API key in the .env file and call PaLM API directly from the client side. This is a mistake from the security prespective. As long as the app isn't going to be deployed to play store or app store, this mistake is acceptable.
+
+If you are going to build the app for production You will have to build a backend program that will store the API key and use it to contact PaLM API. The mobile app will then use the API provided by the backend system you have built.
+
 
 ## 🤝 Contact
 
@@ -127,5 +122,5 @@ Project Link: [Github](https://github.com/ibrahimhabibeg/aide)
 
 ## 💎 Acknowledgements
 
-- [https://hotpot.ai/] (Images and Splash Screen Creation)
-- [https://www.freepik.com/] (Logo Creation)
+- https://hotpot.ai/  for Images and Splash Screen Creation
+- https://www.freepik.com/ for Logo Creation
