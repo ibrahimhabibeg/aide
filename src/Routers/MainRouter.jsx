@@ -7,8 +7,26 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useContext } from "react";
 import { ThemeContext } from "../Providers/Theme";
 import Explain from "../Explain";
+import { Pressable } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 const Stack = createStackNavigator();
+
+const ThemeToggle = () => {
+  const { toggleTheme, theme } = useContext(ThemeContext);
+  return (
+    <Pressable onPress={toggleTheme}>
+      <FontAwesomeIcon
+        icon={theme.colors.type === "light" ? faSun : faMoon}
+        style={{
+          marginRight: theme.spacing[5],
+          color: theme.colors.text.secondary,
+        }}
+      />
+    </Pressable>
+  );
+};
 
 const MainNavigator = () => {
   const { theme } = useContext(ThemeContext);
@@ -18,6 +36,8 @@ const MainNavigator = () => {
         screenOptions={{
           headerStyle: { backgroundColor: theme.colors.background.paper },
           headerTintColor: theme.colors.text.secondary,
+          headerRight: ThemeToggle,
+          cardShadowEnabled: true,
         }}
       >
         <Stack.Screen
@@ -28,7 +48,11 @@ const MainNavigator = () => {
         <Stack.Screen name="Essay" component={Essay} />
         <Stack.Screen name="Explain" component={Explain} />
         <Stack.Screen name="Poem" component={Poem} />
-        <Stack.Screen name="WordAnalysis" component={WordAnalysis} options={{ title: "Word Analysis" }}/>
+        <Stack.Screen
+          name="WordAnalysis"
+          component={WordAnalysis}
+          options={{ title: "Word Analysis" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

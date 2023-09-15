@@ -6,7 +6,6 @@ import { screenData as EssayScreenData } from "../Essay";
 import { screenData as ExplainScreenData } from "../Explain";
 import { screenData as PoemScreenData } from "../Poem";
 import { screenData as WordAnalysisScreenData } from "../WordAnalysis";
-import ChangeTheme from "./ChangeTheme";
 import withMadeByFooter from "../containers/MadeByFooter";
 
 const ScreensData = [EssayScreenData, ExplainScreenData, PoemScreenData, WordAnalysisScreenData];
@@ -31,7 +30,6 @@ const Home = ({ navigation }) => {
           navigation={navigation}
         />
       ))}
-      <ChangeTheme />
     </ScrollView>
   );
 };
