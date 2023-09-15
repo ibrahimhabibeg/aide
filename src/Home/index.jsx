@@ -3,12 +3,13 @@ import ScreenCard from "./ScreenCard";
 import { ThemeContext } from "../Providers/Theme";
 import { useContext } from "react";
 import { screenData as EssayScreenData } from "../Essay";
+import { screenData as EmailScreenData } from "../Email";
 import { screenData as ExplainScreenData } from "../Explain";
 import { screenData as PoemScreenData } from "../Poem";
 import { screenData as WordAnalysisScreenData } from "../WordAnalysis";
 import withMadeByFooter from "../containers/MadeByFooter";
 
-const ScreensData = [EssayScreenData, ExplainScreenData, PoemScreenData, WordAnalysisScreenData];
+const ScreensData = [EmailScreenData, EssayScreenData, ExplainScreenData, PoemScreenData, WordAnalysisScreenData];
 
 const Home = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);

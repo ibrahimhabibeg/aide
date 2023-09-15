@@ -10,6 +10,7 @@ import Explain from "../Explain";
 import { Pressable } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import Email from "../Email";
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,7 @@ const MainNavigator = () => {
           options={{ title: "Aide" }}
         />
         <Stack.Screen name="Essay" component={Essay} />
+        <Stack.Screen name="Email" component={Email} />
         <Stack.Screen name="Explain" component={Explain} />
         <Stack.Screen name="Poem" component={Poem} />
         <Stack.Screen
