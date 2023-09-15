@@ -8,27 +8,20 @@ import {
 } from "react-native";
 import { ThemeContext } from "../Providers/Theme";
 import axios from "axios";
-import * as Clipboard from "expo-clipboard";
 import { API_KEY } from "@env";
 import withMadeByFooter from "../containers/MadeByFooter";
+import CopyToClipboardButton from "../components/CopyToClipboardButton";
 
 const Poem = () => {
   const { theme } = useContext(ThemeContext);
   const [topic, setTopic] = useState("");
   const [poem, setPoem] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isPoemCopied, setIsPoemCopied] = useState(false);
 
   const handleTopicChange = (newTopic) => setTopic(newTopic);
 
-  const copyToClipboard = async () => {
-    setIsPoemCopied(true);
-    await Clipboard.setStringAsync(poem);
-  };
-
   const submitTopic = () => {
     setLoading(true);
-    setIsPoemCopied(false);
     axios
       .post(
         `https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=${API_KEY}`,
@@ -125,35 +118,12 @@ const Poem = () => {
             {poem}
           </Text>
           {poem && (
-            <Pressable
-              style={{
-                backgroundColor:
-                  loading || !topic
-                    ? theme.colors.disabled.background
-                    : theme.colors.primary.main,
-                width: "80%",
-                height: theme.spacing[12],
-                borderRadius: theme.spacing[6],
-                alignSelf: "center",
-                justifyContent: "center",
-                marginVertical: theme.spacing[10],
-              }}
-              onPress={copyToClipboard}
+            <CopyToClipboardButton
+              text={poem}
               disabled={loading || !topic}
-            >
-              <Text
-                style={{
-                  color:
-                    loading || !topic
-                      ? theme.colors.disabled.text
-                      : theme.colors.primary.contrastText,
-                  textAlign: "center",
-                  fontSize: theme.spacing[3.5],
-                }}
-              >
-                {isPoemCopied ? "Poem Copied" : "Copy Poem to Clipboard"}
-              </Text>
-            </Pressable>
+              title={"Copy Poem to Clipboard"}
+              onCopiedTitle={"Poem Copied"}
+            />
           )}
         </>
       )}

@@ -8,27 +8,20 @@ import {
 } from "react-native";
 import { ThemeContext } from "../Providers/Theme";
 import axios from "axios";
-import * as Clipboard from "expo-clipboard";
 import { API_KEY } from "@env";
 import withMadeByFooter from "../containers/MadeByFooter";
+import CopyToClipboardButton from "../components/CopyToClipboardButton";
 
 const WordAnalysis = () => {
   const { theme } = useContext(ThemeContext);
   const [topic, setTopic] = useState("");
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isAnalysisCopied, setIsAnalysisCopied] = useState(false);
 
   const handleTopicChange = (newTopic) => setTopic(newTopic);
 
-  const copyToClipboard = async () => {
-    setIsAnalysisCopied(true);
-    await Clipboard.setStringAsync(analysis);
-  };
-
   const submitTopic = () => {
     setLoading(true);
-    setIsAnalysisCopied(false);
     axios
       .post(
         `https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=${API_KEY}`,
@@ -126,37 +119,12 @@ const WordAnalysis = () => {
             {analysis}
           </Text>
           {analysis && (
-            <Pressable
-              style={{
-                backgroundColor:
-                  loading || !topic
-                    ? theme.colors.disabled.background
-                    : theme.colors.primary.main,
-                width: "80%",
-                height: theme.spacing[12],
-                borderRadius: theme.spacing[6],
-                alignSelf: "center",
-                justifyContent: "center",
-                marginVertical: theme.spacing[10],
-              }}
-              onPress={copyToClipboard}
+            <CopyToClipboardButton
+              text={analysis}
               disabled={loading || !topic}
-            >
-              <Text
-                style={{
-                  color:
-                    loading || !topic
-                      ? theme.colors.disabled.text
-                      : theme.colors.primary.contrastText,
-                  textAlign: "center",
-                  fontSize: theme.spacing[3.5],
-                }}
-              >
-                {isAnalysisCopied
-                  ? "Analysis Copied"
-                  : "Copy Analysis to Clipboard"}
-              </Text>
-            </Pressable>
+              title={"Copy Analysis to Clipboard"}
+              onCopiedTitle={"Analysis Copied"}
+            />
           )}
         </>
       )}
