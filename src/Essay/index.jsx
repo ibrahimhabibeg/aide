@@ -7,47 +7,21 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { ThemeContext } from "../Providers/Theme";
-import axios from "axios";
-import { API_KEY } from "@env";
 import withMadeByFooter from "../containers/MadeByFooter";
 import CopyToClipboardButton from "../components/CopyToClipboardButton";
+import usePalmQuery from "../hooks/usePalmQuery";
 
 const Essay = () => {
   const { theme } = useContext(ThemeContext);
   const [topic, setTopic] = useState("");
-  const [essay, setEssay] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { data, loading, fetchData } = usePalmQuery(
+    (input) =>
+      `Write an essay about the following topic\ninput: ${input}\noutput:`
+  );
 
   const handleTopicChange = (newTopic) => setTopic(newTopic);
 
-  const submitTopic = () => {
-    setLoading(true);
-    axios
-      .post(
-        `https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=${API_KEY}`,
-        {
-          prompt: {
-            text: `Write an essay about the following topic\ninput: ${topic}\noutput:`,
-          },
-          temperature: 0.7,
-          top_k: 40,
-          top_p: 0.95,
-          candidate_count: 1,
-          max_output_tokens: 1024,
-          stop_sequences: [],
-        }
-      )
-      .then((res) => {
-        setEssay(res.data.candidates[0].output);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setEssay(
-          "An error occured while connecting to server. Check your internet connection and retry"
-        );
-        setLoading(false);
-      });
-  };
+  const submitTopic = () => fetchData(topic);
 
   return (
     <ScrollView
@@ -115,11 +89,11 @@ const Essay = () => {
             selectable={true}
             selectionColor={theme.colors.primary.main}
           >
-            {essay}
+            {data}
           </Text>
-          {essay && (
+          {data && (
             <CopyToClipboardButton
-              text={essay}
+              text={data}
               disabled={loading || !topic}
               title={"Copy Essay to Clipboard"}
               onCopiedTitle={"Essay Copied"}

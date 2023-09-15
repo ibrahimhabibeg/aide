@@ -7,47 +7,21 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { ThemeContext } from "../Providers/Theme";
-import axios from "axios";
-import { API_KEY } from "@env";
 import withMadeByFooter from "../containers/MadeByFooter";
 import CopyToClipboardButton from "../components/CopyToClipboardButton";
+import usePalmQuery from "../hooks/usePalmQuery";
 
 const Email = () => {
   const { theme } = useContext(ThemeContext);
   const [topic, setTopic] = useState("");
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { data, loading, fetchData } = usePalmQuery(
+    (input) =>
+      `Given a topic, write emails in a concise, professional manner\ninput: ${input}\noutput:`
+  );
 
   const handleTopicChange = (newTopic) => setTopic(newTopic);
 
-  const submitTopic = () => {
-    setLoading(true);
-    axios
-      .post(
-        `https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=${API_KEY}`,
-        {
-          prompt: {
-            text: `Given a topic, write emails in a concise, professional manner\ninput: ${topic}\noutput:`,
-          },
-          temperature: 0.7,
-          top_k: 40,
-          top_p: 0.95,
-          candidate_count: 1,
-          max_output_tokens: 1024,
-          stop_sequences: [],
-        }
-      )
-      .then((res) => {
-        setEmail(res.data.candidates[0].output);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setEmail(
-          "An error occured while connecting to server. Check your internet connection and retry"
-        );
-        setLoading(false);
-      });
-  };
+  const submitTopic = () => fetchData(topic);
 
   return (
     <ScrollView
@@ -115,11 +89,11 @@ const Email = () => {
             selectable={true}
             selectionColor={theme.colors.primary.main}
           >
-            {email}
+            {data}
           </Text>
-          {email && (
+          {data && (
             <CopyToClipboardButton
-              text={email}
+              text={data}
               disabled={loading || !topic}
               title={"Copy Email to Clipboard"}
               onCopiedTitle={"Email Copied"}
