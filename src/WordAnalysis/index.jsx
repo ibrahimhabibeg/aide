@@ -10,6 +10,7 @@ import { ThemeContext } from "../Providers/Theme";
 import axios from "axios";
 import * as Clipboard from "expo-clipboard";
 import { API_KEY } from "@env";
+import withMadeByFooter from "../containers/MadeByFooter";
 
 const WordAnalysis = () => {
   const { theme } = useContext(ThemeContext);
@@ -163,7 +164,7 @@ const WordAnalysis = () => {
   );
 };
 
-export default WordAnalysis;
+export default withMadeByFooter(WordAnalysis);
 
 export const screenData = {
   title: "Word Analyzer",

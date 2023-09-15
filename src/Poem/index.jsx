@@ -10,6 +10,7 @@ import { ThemeContext } from "../Providers/Theme";
 import axios from "axios";
 import * as Clipboard from "expo-clipboard";
 import { API_KEY } from "@env";
+import withMadeByFooter from "../containers/MadeByFooter";
 
 const Poem = () => {
   const { theme } = useContext(ThemeContext);
@@ -160,7 +161,7 @@ const Poem = () => {
   );
 };
 
-export default Poem;
+export default withMadeByFooter(Poem);
 
 export const screenData = {
   title: "Poem Writer",

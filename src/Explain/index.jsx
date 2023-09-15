@@ -10,6 +10,7 @@ import { ThemeContext } from "../Providers/Theme";
 import axios from "axios";
 import * as Clipboard from "expo-clipboard";
 import { API_KEY } from "@env";
+import withMadeByFooter from "../containers/MadeByFooter";
 
 const Explain = () => {
   const { theme } = useContext(ThemeContext);
@@ -160,7 +161,7 @@ const Explain = () => {
   );
 };
 
-export default Explain;
+export default withMadeByFooter(Explain);
 
 export const screenData = {
   title: "Explainer",
