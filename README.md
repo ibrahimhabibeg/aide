@@ -3,7 +3,7 @@
 <img src=https://i.imgur.com/mPY0eWI.png alt="logo" />
 
 <h1>Aide</h1>
-<p>Aide is an AI-powered application that helps high school students succeed in their studies. The app can help students with a variety of tasks, including writing essays, explaining topics, and analyzing words..</p>
+<p>Aide is an AI-powered application that helps high school students succeed in their studies. The app can help students with a variety of tasks, including writing essays, explaining topics, and analyzing words.</p>
 
 <h4> <span> · </span> <a href="https://github.com/ibrahimhabibeg/aide/blob/master/README.md"> Documentation </a> <span> · </span> <a href="https://github.com/ibrahimhabibeg/aide/issues"> Report Bug </a> <span> · </span> <a href="https://github.com/ibrahimhabibeg/aide/issues"> Request Feature </a> </h4>
 
@@ -20,6 +20,8 @@
 
 
 ## ⭐ About the Project
+
+Inspired by the boring tasks I have faced during my high school years, I decided to build Aide. Aide stands for an assistant or right-hand-man, and I wanted the app to be the assistant for all high school students. The app uses Ai to help make students life easier. 
 
 ### 🎯 Features
 
